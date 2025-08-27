@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useFetch } from '../services/servis'
 function Home() {
     return (
         <div className='lg:mt-10 max-w-[1180px]'>

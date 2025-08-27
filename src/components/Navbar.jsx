@@ -2,9 +2,17 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IoMdClose } from "react-icons/io";
 import { RiMenu2Line } from "react-icons/ri";
-function Navbar() {
+import rightImg from '/public/navbarimages/right.svg'
+import img1 from '/public/navbarimages/Facebook.svg'
+import img2 from '/public/navbarimages/instagram.svg'
+import img3 from '/public/navbarimages/telegram.svg'
+import img4 from '/public/navbarimages/telephon.svg'
+import search from '/public/navbarimages/search.svg'
+import bottom from '/public/navbarimages/bottom.svg'
+import { observer } from "mobx-react-lite";
+import counterStore from '../store/store';
+const Navbar = observer(() => {
   const [openMenu, setOpenMenu] = useState(false)
-  const [openCatalog, setopenCatalog] = useState(false)
   const handleModal = () => {
     setOpenMenu(!openMenu)
   }
@@ -20,13 +28,13 @@ function Navbar() {
             <div>
               <p className='flex gap-3 items-center mt-5 mb-2'>
                 <span className='text-white'>Сочи </span>
-                <img src="./navbarimages/right.svg" alt="" />
+                <img src={rightImg} alt="" />
               </p>
               <div className='flex gap-2'>
-                <img className='w-6 h-6' src="./navbarimages/Facebook.svg" alt="" />
-                <img className='w-6 h-6' src="./navbarimages/instagram.svg" alt="" />
-                <img className='w-6 h-6' src="./navbarimages/telegram.svg" alt="" />
-                <img className='w-6 h-6' src="./navbarimages/telephon.svg" alt="" />
+                <img className='w-6 h-6' src={img1} alt="" />
+                <img className='w-6 h-6' src={img2} alt="" />
+                <img className='w-6 h-6' src={img3} alt="" />
+                <img className='w-6 h-6' src={img4} alt="" />
               </div>
             </div>
           </div>
@@ -37,12 +45,12 @@ function Navbar() {
               className="w-full py-2 pl-10 pr-4 clip-path-custom1  bg-white rounded-lg shadow-md border-none outline-none"
             />
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-              <img src="./navbarimages/search.svg" alt="Search" className="w-6 h-6" />
+              <img src={search} alt="Search" className="w-6 h-6" />
             </div>
           </div>
         </div>
         <div className=''>
-          <div className="h-[120px] w-[70%] bg-[url('./navbarimages/bg.png')] bg-cover bg-center bg-no-repeat absolute z-0">
+          <div className="h-[120px] w-[70%] bg-[url('/navbarimages/bg.png')] bg-cover bg-center bg-no-repeat absolute z-0">
             <div className='flex gap-10 items-center h-full text-center ml-[15%]'>
               <div className='h-10 group'>
                 <Link className='upperace font-bold text-[16px] pb-2 lg:text-[22px]'>Главная</  Link>
@@ -63,31 +71,31 @@ function Navbar() {
               <p className='flex justify-center items-center'>
                 <span className='upperace font-bold text-[16px] mb-1 lg:text-[22px]'>RU</span>
               </p>
-              <img src="./navbarimages/bottom.svg" className='-ml-8' alt="" />
+              <img src={bottom} className='-ml-8' alt="" />
             </div>
           </div>
         </div>
         <div className='flex max-w-[80%] justify-around items-center mt-36'>
           <p className='flex gap-1'>
-            <img src="./navbarimages/email.svg" className='w-10 ' alt="" />
+            <img src="/navbarimages/email.svg" className='w-10 ' alt="" />
             <span className='text-[22px] pr-14 text-[300] mb-2 text-[rgba(26, 26, 26, 1)]'>order@test.ru</span>
           </p>
 
           <div className="flex items-center gap-6">
             <p className="flex items-center gap-2 relative">
-              <img src="./home/vektor.svg" className="absolute" alt="" />
-              <img src="./navbarimages/mobile.svg" alt="" />
+              <img src="/home/vektor.svg" className="absolute" alt="" />
+              <img src="/navbarimages/mobile.svg" alt="" />
               <span className="text-[400] text-nowrap pr-28 text-[22px]">+7 (888) 888-88-88</span>
             </p>
 
-            <img className="w-8 h-8" src="./navbarimages/user.svg" alt="" />
-            <img className="w-8 h-8" src="./navbarimages/heartz.svg" alt="" />
+            <img className="w-8 h-8" src="/navbarimages/user.svg" alt="" />
+            <img className="w-8 h-8" src="/navbarimages/heartz.svg" alt="" />
 
 
             <Link to="/korzina" className='flex flex-col justify-center'>
               <div className='flex flex-col justify-center relative pr-3'>
-                <img src="./footer/cart.svg" className='w-8 mr-[12px] mt-1 bg-transparent z-10 mb-1.5 h-8' alt="" />
-                <p className='absolute bg-white text-[10px] left-4 sm:bottom-6 gradient-border1'>123</p>
+                <img src="/footer/cart.svg" className='w-8 mr-[12px] mt-1 bg-transparent z-10 mb-1.5 h-8' alt="" />
+                {counterStore.count ? <p className='absolute bg-white text-[10px] left-4 sm:bottom-6 gradient-border1'>{counterStore.count}</p> : <></>}
               </div>
 
             </Link>
@@ -223,6 +231,6 @@ function Navbar() {
       {/* kataolog */}
     </div>
   )
-}
+})
 
 export default Navbar
